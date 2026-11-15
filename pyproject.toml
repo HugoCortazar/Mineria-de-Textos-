@@ -1,0 +1,12 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mineria-textos-esperanto"
+version = "0.1.0"
+description = "Procesamiento y clasificación de textos científicos en Esperanto"
+requires-python = ">=3.11"
+
+[tool.setuptools.packages.find]
+where = ["src"]
