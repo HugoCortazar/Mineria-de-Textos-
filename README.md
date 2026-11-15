@@ -70,7 +70,26 @@ La principal limitación del dataset es que **heredamos la etiqueta del artícul
 
 En la fase final utilizaremos nuestro NLP para vectorizar los textos, entrenaremos y evaluaremos un clasificador (incluyendo *accuracy*, F1 macro y matriz de confusión) y probaremos sus predicciones con texto extraído de páginas web reales en Esperanto.
 
-Además, estamos organizando el desarrollo mediante **Git, ramas y Pull Requests** para optar al extra de arquitectura de software. La **librería instalable con `pip`, sus tests independientes y la documentación del paquete** son objetivos de la continuación del proyecto; no se presentan como completados en este punto de control.
+## Librería de NLP
+
+Desde la raíz del repositorio, instalar y ejecutar las pruebas en un entorno virtual:
+
+```bash
+python -m pip install .
+python -m unittest discover -s tests -v
+```
+
+```python
+from esperanto_nlp import EsperantoNLP
+
+doc = EsperantoNLP()("La grandaj ĉeloj dividiĝas.")
+print(doc[1].lemma_, doc[1].pos_)
+print(doc.lemmatized_text())
+```
+
+`Doc` conserva el texto original y admite iteración e indexación. Cada `Token`
+expone `text`, `lemma_`, `pos_`, `is_stop` e `is_punct`. El análisis por
+terminaciones es aproximado y no desambigua a partir del contexto.
 
 ### Uso de herramientas de IA
 
