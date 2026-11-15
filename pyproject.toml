@@ -8,5 +8,8 @@ version = "0.1.0"
 description = "Procesamiento y clasificación de textos científicos en Esperanto"
 requires-python = ">=3.11"
 
+[project.optional-dependencies]
+proyecto = ["pandas==2.2.3"]
+
 [tool.setuptools.packages.find]
 where = ["src"]

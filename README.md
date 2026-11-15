@@ -16,18 +16,29 @@ Aplicamos después varias reglas de limpieza: eliminación de referencias, enlac
 
 El resultado se guarda en `esperanto_scienco_dataset.csv`, respetando el contrato de datos del enunciado: **codificación UTF-8, separador `;`, cabecera `text;class` y una fila por párrafo**.
 
-### Resultados de la última ejecución
+### Corpus publicado
 
-| Categoría | Párrafos válidos |
+| Categoría | Párrafos |
 |---|---:|
-| Biología (`biologio`) | 406 |
+| Biología (`biologio`) | 399 |
 | Química (`kemio`) | 431 |
-| Física (`fiziko`) | 353 |
-| **Total** | **1.190** |
+| Física (`fiziko`) | 349 |
+| **Total** | **1.179** |
 
-Las tres clases superan los 300 párrafos recomendados en el enunciado.
+La procedencia se guarda en `esperanto_scienco_fuentes.csv`, con el ID, título y revisión de
+cada artículo. El SHA-256 de cada párrafo vincula ambos ficheros sin alterar el contrato
+`text;class`. Los dos CSV deben actualizarse en el mismo commit.
 
-Durante la recogida y limpieza consideramos **2.659 bloques no vacíos** y descartamos **1.465** por las reglas de filtrado (**55,10 %**). Esta cifra mide descartes durante la limpieza, **no errores en las etiquetas**. La cantidad final de filas también refleja las comprobaciones de duplicados y etiquetas contradictorias.
+Para regenerarlos desde la raíz del repositorio:
+
+```bash
+python -m pip install ".[proyecto]"
+python scripts/generar_dataset.py
+```
+
+El generador registra los fallos permanentes por artículo, sigue con los demás y comprueba
+la cobertura de las tres clases antes de escribir. Al consultar Wikipedia en directo,
+el contenido puede cambiar. Para reproducir una ejecución, usad los dos CSV del mismo commit.
 
 ## 2. Procesamiento del lenguaje natural
 
